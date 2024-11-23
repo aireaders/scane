@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Pages + Apps Script</title>
+</head>
+<body>
+  <h1>Демонстрация GitHub Pages + Apps Script</h1>
+  <button id="fetchData">Получить данные</button>
+  <pre id="output"></pre>
+
+  <script>
+    const scriptUrl = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+    const output = document.getElementById('output');
+
+    document.getElementById('fetchData').addEventListener('click', () => {
+      fetch(scriptUrl)
+        .then(response => response.json())
+        .then(data => {
+          output.textContent = JSON.stringify(data, null, 2);
+        })
+        .catch(error => {
+          output.textContent = `Ошибка: ${error}`;
+        });
+    });
+  </script>
+</body>
+</html>
